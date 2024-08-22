@@ -3,13 +3,12 @@ import {
   InputType,
   ObjectType,
   registerEnumType,
-} from "@nestjs/graphql";
-import { CoreEntity } from "src/common/entities/core.entity";
-import { BeforeInsert, Column, Entity } from "typeorm";
-import * as bcrypt from "bcrypt";
-import { InternalServerErrorException } from "@nestjs/common";
-
-import { isEmail, isEnum } from "class-validator";
+} from '@nestjs/graphql';
+import { BeforeInsert, Column, Entity } from 'typeorm';
+import * as bcrypt from 'bcrypt';
+import { CoreEntity } from 'src/common/entities/core.entity';
+import { InternalServerErrorException } from '@nestjs/common';
+import { IsEmail, IsEnum } from 'class-validator';
 
 enum UserRole {
   Client,
@@ -17,24 +16,24 @@ enum UserRole {
   Delivery,
 }
 
-registerEnumType(UserRole, { name: "UserRole" });
+registerEnumType(UserRole, { name: 'UserRole' });
 
 @InputType({ isAbstract: true })
 @ObjectType()
 @Entity()
 export class User extends CoreEntity {
   @Column()
-  @Field((type) => String)
-  // @isEmail()
+  @Field(type => String)
+  @IsEmail()
   email: string;
 
   @Column()
-  @Field((type) => String)
+  @Field(type => String)
   password: string;
 
-  @Column({ type: "enum", enum: UserRole })
-  @Field((type) => UserRole)
-  // @isEnum(UserRole)
+  @Column({ type: 'enum', enum: UserRole })
+  @Field(type => UserRole)
+  @IsEnum(UserRole)
   role: UserRole;
 
   @BeforeInsert()
@@ -47,12 +46,12 @@ export class User extends CoreEntity {
     }
   }
 
-  async checkPassword(aPasswrod: string): Promise<boolean> {
+  async checkPassword(aPassword: string): Promise<boolean> {
     try {
-      const ok = await bcrypt.compare(aPasswrod, this.password);
+      const ok = await bcrypt.compare(aPassword, this.password);
       return ok;
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      console.log(e);
       throw new InternalServerErrorException();
     }
   }
