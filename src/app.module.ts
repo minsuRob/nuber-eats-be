@@ -16,7 +16,7 @@ import { User } from './users/entities/user.entity';
 import { JwtModule } from './jwt/jwt.module';
 import { JwtMiddleware } from './jwt/jwt.middleware';
 import { Verification } from './users/entities/verification.entity';
-import { Category } from './restaurants/entities/cetegory.entity';
+import { Category } from './restaurants/entities/category.entity';
 
 @Module({
   imports: [
