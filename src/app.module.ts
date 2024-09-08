@@ -17,6 +17,7 @@ import { JwtModule } from './jwt/jwt.module';
 import { JwtMiddleware } from './jwt/jwt.middleware';
 import { Verification } from './users/entities/verification.entity';
 import { Category } from './restaurants/entities/category.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { Category } from './restaurants/entities/category.entity';
       context: ({ req }) => ({ user: req['user'] }),
     }),
     JwtModule.forRoot({ privateKey: process.env.PRIVATE_KEY }),
+    AuthModule,
     UsersModule,
     RestaurantsModule,
   ],
