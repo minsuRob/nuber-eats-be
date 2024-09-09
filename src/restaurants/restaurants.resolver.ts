@@ -92,10 +92,8 @@ export class CategoriesResolver {
   }
 
   @Query(returns => RestaurantsOutput)
-  restaurants(
-    @Args('input') restaurantsInput: RestaurantsInput,
-  ): Promise<RestaurantsOutput> {
-    return this.restaurantService.allRestaurants(restaurantsInput);
+  restaurants(): Promise<RestaurantsOutput> {
+    return this.restaurantService.allRestaurants();
   }
 
   @Query(returns => RestaurantOutput)

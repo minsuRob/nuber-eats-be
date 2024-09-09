@@ -6,7 +6,7 @@ import {
 import { Restaurant } from '../entities/restaurant.entity';
 
 @InputType()
-export class RestaurantsInput extends PaginationInput {}
+export class RestaurantsInput {}
 
 @ObjectType()
 export class RestaurantsOutput extends PaginationOutput {
