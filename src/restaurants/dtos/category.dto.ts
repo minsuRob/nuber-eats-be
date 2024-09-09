@@ -6,7 +6,7 @@ import {
   PaginationOutput,
 } from 'src/common/dtos/pagination.dto';
 
-@InputType()
+@ArgsType()
 export class CategoryInput extends PaginationInput {
   @Field(type => String)
   slug: string;
