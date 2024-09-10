@@ -190,7 +190,7 @@ export class RestaurantService {
     }
   }
 
-  async allRestaurants(): Promise<RestaurantsOutput> {
+  async allRestaurants({ page }: RestaurantsInput): Promise<RestaurantsOutput> {
     try {
       const [restaurants, totalResults] = await this.restaurants.findAndCount();
       return {
